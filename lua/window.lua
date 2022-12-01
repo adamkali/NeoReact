@@ -164,7 +164,7 @@ local function NeoReactWindow()
 	open_window()
 	set_mapping()
 	move_curser(0)
-	api.nvim_win_set_cursor(win, {1, 0})
+	api.nvim_win_set_cursor(win, {2, 1})
 end
 
 return {
