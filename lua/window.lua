@@ -112,7 +112,7 @@ local function set_mapping()
 	}
 
 	for key, func in pairs(mappings) do
-		api.nvim_buf_set_keymap(buf, 'n', key, '<cmd>lua require("NeoReact.NeoReactWindow").' .. func .. '()<C-p>', {noremap = true, silent = true})
+		api.nvim_buf_set_keymap(buf, 'n', key, '<cmd>lua require"NeoReact".' .. func .. '()<CR>', {noremap = true, silent = true})
 	end
 
 	local other_chars = {
