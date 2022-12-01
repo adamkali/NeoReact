@@ -4,7 +4,7 @@
 -- it should also have a props: any as an argument
 --
 
-let api = vim.api
+local api = vim.api
 
 local function insert_edfc_template()
 	local template = [[
