@@ -90,7 +90,7 @@ end
 -- make a function to move the cursor up and down
 local function move_cursor(direction)
 	-- remove the highlight from the current line
-	api.nvim_buf_clear_namespace(buf, -1, 0, -1)
+	api.nvim_buf_clear_namespace(buf, -1, position, position + 1)
 
 
 	position = position + direction
