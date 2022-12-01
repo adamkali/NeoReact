@@ -9,7 +9,7 @@ local position = 0
 
 -- Set the window size to be 8 lines and 32 columns
 local width = 26
-local height = 6
+local height = 8
 
 -- create an object to hold the name of the commands and the function to execute
 local template_mapping = {
@@ -99,7 +99,7 @@ local function move_cursor(direction)
 	if position < 1 then
 		position = #template_mapping
 	-- if position is greater than the template_mapping length then set it to 0
-	elseif position > #template_mapping then
+	elseif position > #template_mapping + 1 then
 		position = 1
 	end
 	highlight_current_line()
@@ -135,7 +135,7 @@ local function set_mapping()
 	for k, _ in pairs(template_mapping) do
 		table.insert(template_names, k)
 	end
-	
+
 	-- add the template names to the buffer
 	api.nvim_buf_set_lines(buf, 1, -1, false, template_names)
 
