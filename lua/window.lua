@@ -84,13 +84,13 @@ end
 
 -- make a function to highlight the current line
 local function highlight_current_line()
-	api.nvim_buf_add_highlight(buf, -1, 'Visual', position, 0, -1)
+	api.nvim_buf_add_highlight(0, buf, 'Identifier', position, 0, -1)
 end
 
 -- make a function to move the cursor up and down
 local function move_cursor(direction)
 	-- remove the highlight from the current line
-	api.nvim_buf_clear_namespace(buf, -1, position, position + 1)
+	api.nvim_buf_clear_namespace(0, buf, 0, -1)
 
 
 	position = position + direction
@@ -120,12 +120,9 @@ local function set_mapping()
 		['j'] = move_cursor(1),
 		['k'] = move_cursor(-1),
 		['<C-p>'] = function()
-			-- insert the highlighted template
-			-- get the current line
-			local line = api.nvim_buf_get_lines(buf, position, position + 1, false)
-			-- get the template
-			local template = template_mapping[line[1]]
-			-- activate the function stored in template
+			-- select the template based on the position
+			local template = template_mapping[position]
+			-- call the template function
 			template()
 			-- close the window
 			close_window()
