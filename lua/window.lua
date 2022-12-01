@@ -1,7 +1,7 @@
 -- create a new window 
 
 -- bring in code templates
-local code_templates = require('code_templates')
+local code_templates = require('NeoReact.code_templates')
 
 local api = vim.api
 local buf, win
@@ -9,10 +9,10 @@ local position = 0
 
 -- create an object to hold the name of the commands and the function to execute
 local template_mapping = {
-	['Functional Component'] = code_templates.insert_edfc_template,
-	['Function, Then, Catch'] = code_templates.insert_function_then_catch_template,
-	['Use State'] = code_templates.insert_state_var_template,
-	['Use Effect'] = code_templates.insert_use_effect_template
+	['React Functional Component'] = code_templates.insert_edfc_template,
+	['Function().then().catch() '] = code_templates.insert_function_then_catch_template,
+	['React useState Snippet    '] = code_templates.insert_state_var_template,
+	['React useEffect Snippet   '] = code_templates.insert_use_effect_template
 }
 
 local function open_window()
@@ -20,44 +20,39 @@ local function open_window()
 	api.nvim_buf_set_option(buf, 'bufhidden', 'wipe') -- set buffer options
 	local border_buf = api.nvim_create_buf(false, true) -- create new buffer for window
 
-	-- get dimensions
-	local width = api.nvim_get_option('columns')
-	local height = api.nvim_get_option('lines')
+	-- Set the window size to be 8 lines and 32 columns
+	local width = 32
+	local height = 8
 
-	-- calculate window size
-	local win_width = math.floor(width * 0.8)
-	local win_height = math.floor(height * 0. -4)
-
-	-- calculate startig position
-	local row = math.floor((height - win_height) / 2 - 1)
-	local col = math.floor((width - win_width) / 2)
+	-- Get the current position of the cursor
+	local row, col = unpack(api.nvim_win_get_cursor(0))
 
 	-- set some options
 	local opts = {
 		style = 'minimal',
 		relative = 'editor',
-		width = win_width,
-		height = win_height,
-		row = row,
-		col = col
+		width = width,
+		height = height,
+		row = row + 2,
+		col = col + 2
 	}
 
 	-- set border opts
 	local border_opts = {
 		style = 'minimal',
 		relative = 'editor',
-		width = win_width + 2,
-		height = win_height + 2,
-		row = row - 1,
-		col = col - 1
+		width = width + 2,
+		height = height + 2,
+		row = row + 1,
+		col = col + 1
 	}
 
-	local border_lines =  { '╭' .. string.rep('─', win_width) .. '╮' }
-	local middle_line = '│' .. string.rep(' ', win_width) .. '│'
-	for i = 1, win_height do
+	local border_lines =  { '╭' .. string.rep('─', width) .. '╮' }
+	local middle_line = '│' .. string.rep(' ', width) .. '│'
+	for i = 1, height do
 		table.insert(border_lines, middle_line)
 	end
-	table.insert(border_lines, '╰' .. string.rep('─', win_width) .. '╯')
+	table.insert(border_lines, '╰' .. string.rep('─', width) .. '╯')
 	api.nvim_buf_set_lines(border_buf, 0, -1, false, border_lines)
 
 	local border_win = api.nvim_open_win(border_buf, true, border_opts)
