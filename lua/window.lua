@@ -78,8 +78,9 @@ local function open_window()
 	-- Calculate the center of "React Templates"
 	local center = math.floor((width - #('React Templates')) / 2)
 
-	-- add a title to the window top center 
-	api.nvim_buf_set_lines(buf, 0, center, false, {'React Templates'})
+	-- add React Templates to the window top center 
+	api.nvim_buf_set_lines(buf, 0, -1, false, {string.rep(' ', center) .. 'React Templates'})
+	
 end
 
 -- make a function to highlight the current line
