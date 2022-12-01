@@ -80,7 +80,7 @@ local function open_window()
 	local center = math.floor((width - #('React Templates')) / 2)
 
 	-- add React Templates to the window top center 
-	api.nvim_buf_set_lines(buf, 0, -1, false, {string.rep(' ', center) .. 'React Templates'})
+	api.nvim_buf_set_lines(buf, 1, 2, false, {string.rep(' ', center) .. 'React Templates'})
 	
 end
 
@@ -154,17 +154,19 @@ local function set_mapping()
 	-- end
 end
 
--- local function init_curser()
--- 	local new_position = math.max(4, api.nvim_win_get_cursor(win)[1] - 1)
--- 	api.nvim_win_set_cursor(win, {new_position, 0})
--- end
+local function init_curser()
+	local new_position = math.max(4, api.nvim_win_get_cursor(win)[1] - 1)
+	api.nvim_win_set_cursor(win, {new_position, 0})
+end
 
 local function NeoReactWindow()
 	position = 0
 	open_window()
 	set_mapping()
 	move_curser(0)
-	api.nvim_win_set_cursor(win, {2, 1})
+	-- set the cursor to the first line of the new window
+	init_curser()
+
 end
 
 return {
