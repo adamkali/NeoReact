@@ -96,11 +96,11 @@ local function move_cursor(direction)
 
 	position = position + direction
 	-- if position is less than 0, set it to the template_mapping length
-	if position < 0 then
+	if position < 1 then
 		position = #template_mapping
 	-- if position is greater than the template_mapping length then set it to 0
-	elseif position > 4 then
-		position = 0
+	elseif position > #template_mapping then
+		position = 1
 	end
 	highlight_current_line()
 end
@@ -135,6 +135,7 @@ local function set_mapping()
 	for k, _ in pairs(template_mapping) do
 		table.insert(template_names, k)
 	end
+	
 	-- add the template names to the buffer
 	api.nvim_buf_set_lines(buf, 1, -1, false, template_names)
 
@@ -161,8 +162,8 @@ local function NeoReactWindow()
 	position = 0
 	open_window()
 	set_mapping()
-	update_window(0)
-	api.nvim_win_set_cursor(win, {4, 0})
+	move_curser(0)
+	api.nvim_win_set_cursor(win, {0, 1})
 end
 
 return {
