@@ -71,7 +71,7 @@ local function open_window()
 	api.nvim_buf_set_lines(border_buf, 0, -1, false, border_lines)
 
 	win = api.nvim_open_win(buf, true, opts) -- open window
-	local border_win = api.nvim_open_win(border_buf, true, border_opts)
+	api.nvim_open_win(border_buf, true, border_opts)
 	
 
 	api.nvim_command('au BufWipeout <buffer> exe "silent bwipeout! "' .. border_buf) -- close window when buffer is wiped out
@@ -138,7 +138,7 @@ local function set_mapping()
 	end
 
 	-- add the template names to the buffer
-	api.nvim_buf_set_lines(buf, 1, -1, false, template_names)
+	api.nvim_buf_set_lines(buf, 2, -1, false, template_names)
 
 	for key, func in pairs(mappings) do
 		api.nvim_buf_set_keymap(buf, 'n', key, '<cmd>lua require"NeoReact".' .. func .. '()<CR>', {noremap = true, silent = true})
