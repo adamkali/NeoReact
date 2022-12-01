@@ -91,10 +91,12 @@ end
 local function move_cursor(direction)
 	api.nvim_buf_clear_namespace(buf, -1, 0, -1)
 	position = position + direction
+	-- if position is less than 0, set it to the template_mapping length
 	if position < 0 then
-		position = 0
+		position = #template_mapping
+	-- if position is greater than the template_mapping length then set it to 0
 	elseif position > 4 then
-		position = 4
+		position = 0
 	end
 	highlight_current_line()
 end
