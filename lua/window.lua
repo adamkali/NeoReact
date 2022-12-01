@@ -1,7 +1,7 @@
 -- create a new window 
 
 -- bring in code templates
-local code_templates = require('NeoReact.code_templates')
+local code_templates = require('code_templates')
 
 local api = vim.api
 local buf, win
