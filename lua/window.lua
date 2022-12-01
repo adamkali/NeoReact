@@ -84,13 +84,13 @@ end
 
 -- make a function to highlight the current line
 local function highlight_current_line()
-	api.nvim_buf_add_highlight(0, buf, 'Identifier', position, 0, -1)
+	api.nvim_buf_add_highlight(0, buf, 'Identifier', position, 0, 25)
 end
 
 -- make a function to move the cursor up and down
 local function move_cursor(direction)
 	-- remove the highlight from the current line
-	api.nvim_buf_clear_namespace(0, buf, 0, -1)
+	api.nvim_buf_clear_namespace(0, buf, 0, 25)
 
 
 	position = position + direction
