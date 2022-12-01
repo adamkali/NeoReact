@@ -89,7 +89,7 @@ local function highlight_current_line()
 end
 
 -- make a function to move the cursor up and down
-local function move_cursor(direction)
+local function move_curser(direction)
 	-- remove the highlight from the current line
 	api.nvim_buf_clear_namespace(0, buf, 0, -1)
 
@@ -118,8 +118,8 @@ local function set_mapping()
 	-- control+p should insert the highlighted template
 	local mappings = {
 		['q'] = close_window(),
-		['j'] = move_cursor(1),
-		['k'] = move_cursor(-1),
+		['j'] = move_curser(1),
+		['k'] = move_curser(-1),
 		['<C-p>'] = function()
 			-- select the template based on the position
 			local template = template_mapping[position]
@@ -153,7 +153,7 @@ local function set_mapping()
 	-- end
 end
 
-local function move_curser()
+local function init_curser()
 	local new_position = math.max(4, api.nvim_win_get_cursor(win)[1] - 1)
 	api.nvim_win_set_cursor(win, {new_position, 0})
 end
@@ -169,6 +169,7 @@ end
 return {
 	NeoReactWindow = NeoReactWindow,
 	move_curser = move_curser,
+	init_curser = init_curser,
 	close_window = close_window,
 	update_window = highlight_current_line,
 	refactor = code_templates.refactor_to_function_component,
