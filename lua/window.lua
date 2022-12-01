@@ -9,7 +9,7 @@ local position = 0
 
 -- Set the window size to be 8 lines and 32 columns
 local width = 27
-local height = 8
+local height = 10
 
 -- create an object to hold the name of the commands and the function to execute
 local template_mapping = {
@@ -137,7 +137,7 @@ local function set_mapping()
 	end
 
 	-- add the template names to the buffer
-	api.nvim_buf_set_lines(buf, 1, 1 + #template_names, false, template_names)
+	api.nvim_buf_set_lines(buf, 1, #template_names, false, template_names)
 
 	for key, func in pairs(mappings) do
 		api.nvim_buf_set_keymap(buf, 'n', key, '<cmd>lua require"NeoReact".' .. func .. '()<CR>', {noremap = true, silent = true})
