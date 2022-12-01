@@ -130,27 +130,27 @@ local function set_mapping()
 		end
 	}
 
-	-- fill buf with the template names from the keys of the template_mapping object
-	local template_names = {}
-	for k, _ in pairs(template_mapping) do
-		table.insert(template_names, k)
-	end
+	-- -- fill buf with the template names from the keys of the template_mapping object
+	-- local template_names = {}
+	-- for k, _ in pairs(template_mapping) do
+	-- 	table.insert(template_names, k)
+	-- end
 
-	-- add the template names to the buffer
-	-- // api.nvim_buf_set_lines(buf, 1, #template_names, false, template_names)
+	-- -- add the template names to the buffer
+	-- api.nvim_buf_set_lines(buf, 1, #template_names, false, template_names)
 
-	for key, func in pairs(mappings) do
-		api.nvim_buf_set_keymap(buf, 'n', key, '<cmd>lua require"NeoReact".' .. func .. '()<CR>', {noremap = true, silent = true})
-	end
+	-- for key, func in pairs(mappings) do
+	-- 	api.nvim_buf_set_keymap(buf, 'n', key, '<cmd>lua require"NeoReact".' .. func .. '()<CR>', {noremap = true, silent = true})
+	-- end
 
-	local other_chars = {
-		'a', 'b', 'c', 'd', 'e', 'f', 'g', 'i', 'n', 'o', 'p', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'
-	}
-	for k,v in ipairs(other_chars) do
-	api.nvim_buf_set_keymap(buf, 'n', v, '', { nowait = true, noremap = true, silent = true })
-	api.nvim_buf_set_keymap(buf, 'n', v:upper(), '', { nowait = true, noremap = true, silent = true })
-	api.nvim_buf_set_keymap(buf, 'n',  '<c-'..v..'>', '', { nowait = true, noremap = true, silent = true })
-	end
+	-- local other_chars = {
+	-- 	'a', 'b', 'c', 'd', 'e', 'f', 'g', 'i', 'n', 'o', 'p', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'
+	-- }
+	-- for k,v in ipairs(other_chars) do
+	-- api.nvim_buf_set_keymap(buf, 'n', v, '', { nowait = true, noremap = true, silent = true })
+	-- api.nvim_buf_set_keymap(buf, 'n', v:upper(), '', { nowait = true, noremap = true, silent = true })
+	-- api.nvim_buf_set_keymap(buf, 'n',  '<c-'..v..'>', '', { nowait = true, noremap = true, silent = true })
+	-- end
 end
 
 local function move_curser()
