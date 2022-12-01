@@ -7,6 +7,7 @@
 if exists('g:loaded_NeoReact') | finish | endif 
 
 let s:save_cpo = &cpo
+set cpo&vim
 
 hi def link NeoReactHeader     Number
 hi def link NeoReactSubHeader  Identifier
