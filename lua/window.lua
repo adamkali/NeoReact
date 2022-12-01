@@ -153,10 +153,10 @@ local function set_mapping()
 	-- end
 end
 
-local function init_curser()
-	local new_position = math.max(4, api.nvim_win_get_cursor(win)[1] - 1)
-	api.nvim_win_set_cursor(win, {new_position, 0})
-end
+-- local function init_curser()
+-- 	local new_position = math.max(4, api.nvim_win_get_cursor(win)[1] - 1)
+-- 	api.nvim_win_set_cursor(win, {new_position, 0})
+-- end
 
 local function NeoReactWindow()
 	position = 0
@@ -169,7 +169,7 @@ end
 return {
 	NeoReactWindow = NeoReactWindow,
 	move_curser = move_curser,
-	init_curser = init_curser,
+	-- init_curser = init_curser,
 	close_window = close_window,
 	update_window = highlight_current_line,
 	refactor = code_templates.refactor_to_function_component,
