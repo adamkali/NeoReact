@@ -135,7 +135,8 @@ local function set_mapping()
 	for k, _ in pairs(template_mapping) do
 		table.insert(template_names, k)
 	end
-	api.nvim_buf_set_lines(buf, 1, -1, false, template_names)
+	-- add the template names to the buffer
+	api.nvim_buf_set_lines(buf, 1, 8, false, template_names)
 
 	for key, func in pairs(mappings) do
 		api.nvim_buf_set_keymap(buf, 'n', key, '<cmd>lua require"NeoReact".' .. func .. '()<CR>', {noremap = true, silent = true})
