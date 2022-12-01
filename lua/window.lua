@@ -89,7 +89,10 @@ end
 
 -- make a function to move the cursor up and down
 local function move_cursor(direction)
+	-- remove the highlight from the current line
 	api.nvim_buf_clear_namespace(buf, -1, 0, -1)
+
+
 	position = position + direction
 	-- if position is less than 0, set it to the template_mapping length
 	if position < 0 then
