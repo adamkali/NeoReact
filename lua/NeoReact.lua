@@ -1,4 +1,4 @@
-local window = require('window')
+local window = require 'window'
 
 local M = {}
 

@@ -13,6 +13,10 @@ hi def link NeoReactHeader     Number
 hi def link NeoReactSubHeader  Identifier
 
 command! NeoReact lua require'NeoReact'.NeoReact()
+command! NeoReactRefactor lua require'NeoReact'.refactor()
+
+noremap <leader>nr :NeoReact<CR>
+noremap <leader>nf :NeoReact<CR>
 
 let &cpo = s:save_cpo
 unlet s:save_cpo
