@@ -70,8 +70,9 @@ local function open_window()
 	table.insert(border_lines, '╰' .. string.rep('─', width) .. '╯')
 	api.nvim_buf_set_lines(border_buf, 0, -1, false, border_lines)
 
-	local border_win = api.nvim_open_win(border_buf, true, border_opts)
 	win = api.nvim_open_win(buf, true, opts) -- open window
+	local border_win = api.nvim_open_win(border_buf, true, border_opts)
+	
 
 	api.nvim_command('au BufWipeout <buffer> exe "silent bwipeout! "' .. border_buf) -- close window when buffer is wiped out
 
