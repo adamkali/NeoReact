@@ -57,7 +57,7 @@ end
 
 local function refactor_to_function_component()
 	-- get the current selection
-	local start_line, start_col, end_line, end_col = unpack(vim.fn.getpos("'<"))
+	local start_line, start_col, end_line, end_col = unpack(api.fn.getpos("'<"))
 
 	-- save the current text in the register
 	local saved = api.cmd('normal! "ay')

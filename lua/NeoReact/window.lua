@@ -52,7 +52,7 @@ local function open_window()
 		col = col - 1
 	}
 
-	local border_lines =  '╭' .. string.rep('─', win_width) .. '╮'
+	local border_lines =  { '╭' .. string.rep('─', win_width) .. '╮' }
 	local middle_line = '│' .. string.rep(' ', win_width) .. '│'
 	for i = 1, win_height do
 		table.insert(border_lines, middle_line)
@@ -82,10 +82,10 @@ local function update_window(direction)
 	end
 
 	-- highlight the current line
-	api.nvim_buf_set_lines(buf, 1, 2, false, lines)
-	api.nvim_buf_set_lines(buf, 3, -1, false, result)
-	api.nvim_buf_add_highlight(buf, -1, 'Normal', position + 1, 0, -1)
+	api.nvim_buf_set_lines(buf, 0, -1, false, lines)
+	api.nvim_buf_add_highlight(buf, -1, 'CursorLine', position, 0, -1)
 	api.nvim_buf_set_option(buf, 'modifiable', false)
+	
 end
 
 local function close_window()
