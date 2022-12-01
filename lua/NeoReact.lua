@@ -1,4 +1,4 @@
-local window = require('NeoReact.window')
+local window = require('window')
 
 local M = {}
 
