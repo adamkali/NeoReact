@@ -85,13 +85,13 @@ end
 
 -- make a function to highlight the current line
 local function highlight_current_line()
-	api.nvim_buf_add_highlight(0, buf, 'Identifier', position, 0, 25)
+	api.nvim_buf_add_highlight(0, buf, 'Identifier', position, 0, -1)
 end
 
 -- make a function to move the cursor up and down
 local function move_cursor(direction)
 	-- remove the highlight from the current line
-	api.nvim_buf_clear_namespace(0, buf, 0, 25)
+	api.nvim_buf_clear_namespace(0, buf, 0, -1)
 
 
 	position = position + direction
@@ -136,7 +136,7 @@ local function set_mapping()
 		table.insert(template_names, k)
 	end
 	-- add the template names to the buffer
-	api.nvim_buf_set_lines(buf, 1, 8, false, template_names)
+	api.nvim_buf_set_lines(buf, 1, -1, false, template_names)
 
 	for key, func in pairs(mappings) do
 		api.nvim_buf_set_keymap(buf, 'n', key, '<cmd>lua require"NeoReact".' .. func .. '()<CR>', {noremap = true, silent = true})
