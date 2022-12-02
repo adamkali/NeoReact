@@ -71,9 +71,9 @@ local function open_window()
 	table.insert(border_lines, '╰' .. string.rep('─', width) .. '╯')
 	api.nvim_buf_set_lines(border_buf, 0, -1, false, border_lines)
 
-	win = api.nvim_open_win(buf, true, opts) -- open window
+
 	api.nvim_open_win(border_buf, true, border_opts)
-	
+	win = api.nvim_open_win(buf, true, opts) -- open window
 
 	api.nvim_command('au BufWipeout <buffer> exe "silent bwipeout! "' .. border_buf) -- close window when buffer is wiped out
 
@@ -81,7 +81,7 @@ local function open_window()
 	local center = math.floor((width - #('React Templates')) / 2)
 
 	-- add React Templates to the window top center 
-	api.nvim_buf_set_lines(buf, 1, 2, false, {string.rep(' ', center) .. 'React Templates'})
+	api.nvim_buf_set_lines(buf, 0, -1, false, {string.rep(' ', center) .. 'React Templates'})
 
 	
 end
