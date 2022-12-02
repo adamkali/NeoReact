@@ -163,12 +163,10 @@ end
 return {
 	NeoReactWindow = NeoReactWindow,
 	move_curser = move_curser,
-	-- init_curser = init_curser,
 	close_window = close_window,
 	update_window = highlight_current_line,
 	refactor = code_templates.refactor_to_function_component,
-	call_template = call_template
-	-- Add the other functions here
+	call_template = call_template,
 	insert_edfc_template = code_templates.insert_edfc_template,
 	insert_function_then_catch_template = code_templates.insert_function_then_catch_template,
 	insert_state_var_template = code_templates.insert_state_var_template,
