@@ -137,6 +137,7 @@ local function set_mapping()
 		table.insert(template_names, k)
 	end
 
+	print(buf.id)
 	-- add the template names to the buffer
 	api.nvim_buf_set_lines(buf, 2, -1, false, template_names)
 
