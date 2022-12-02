@@ -167,6 +167,7 @@ return {
 	close_window = close_window,
 	update_window = highlight_current_line,
 	refactor = code_templates.refactor_to_function_component,
+	call_template = call_template
 	-- Add the other functions here
 	insert_edfc_template = code_templates.insert_edfc_template,
 	insert_function_then_catch_template = code_templates.insert_function_then_catch_template,
