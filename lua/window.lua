@@ -90,7 +90,7 @@ local function open_window()
 	api.nvim_buf_set_lines(buf, 0, -1, false, {string.rep(' ', center) .. 'React Templates'})
 	-- change the title color to be blue
 	api.nvim_buf_add_highlight(buf, -1, 'Title', 0, center, center + #('React Templates'))
-	api.nvim_set_hl('Title', {foreground = '#61afef', background = 'none', special = 'none'})
+	api.nvim_set_hl(win, 'Title', {foreground = '#61afef', background = 'none', special = 'none'})
 end
 
 -- make a function to highlight the current line
@@ -98,7 +98,7 @@ local function highlight_current_line()
 	-- highlight the line labeled by position
 	api.nvim_buf_add_highlight(buf, -1, 'Highlighted', position, 0, -1)
 	-- set the highlight color to be white with dark blue background
-	api.nvim_set_hl('Highlighted', {foreground = '#F6F7F8', background = '#1633a9', special = 'none'})
+	api.nvim_set_hl(win, 'Highlighted', {foreground = '#F6F7F8', background = '#1633a9', special = 'none'})
 end
 
 -- make a function to move the cursor up and down
