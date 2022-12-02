@@ -25,21 +25,23 @@ export default function (props.any) {
 }
 ]]
 
-	api.nvim_put({template}, 'l', true, true)
-
-	-- set cursor position where the function name should be 
-	api.nvim_win_set_cursor(0, {3, 24})
+	api.nvim_put(template, 'l', true, true)
+	api.nvim_win_set_cursor(0, { 7, 24 })
+	
 end
 
 local function insert_state_var_template()
 	local template = [[
-	const [, set<++>] = useState(<++>);
+	const [ , set<++>] = useState(<++>);
 ]]
+
+	-- get the current cursor position
+	local row, col = unpack(api.nvim_win_get_cursor(0))
 
 	api.nvim_put({template}, 'l', true, true)
 
 	-- set cursor position where the function name should be 
-	api.nvim_win_set_cursor(0, {1, 12})
+	api.nvim_win_set_cursor(0, {row, 9})
 end
 
 local function insert_use_effect_template()
@@ -49,10 +51,12 @@ local function insert_use_effect_template()
 	}, [<++>]);
 ]]
 
+	-- get the current cursor position
+	local row, col = unpack(api.nvim_win_get_cursor(0))
 	api.nvim_put({template}, 'l', true, true)
 
 	-- set cursor position where the function name should be 
-	api.nvim_win_set_cursor(0, {2, 9})
+	api.nvim_win_set_cursor(0, {row, 9})
 end
 
 local function refactor_to_function_component()
@@ -123,10 +127,13 @@ local function insert_function_then_catch_template()
 })
 ]]
 
+	-- get the current cursor position
+	local row, col = unpack(api.nvim_win_get_cursor(0))
+
 	api.nvim_put({template}, 'l', true, true)
 
 	-- set cursor position right before the ()
-	api.nvim_win_set_cursor(0, {1, 1})
+	api.nvim_win_set_cursor(0, {row, col})
 end
 
 return {

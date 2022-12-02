@@ -118,14 +118,17 @@ local function set_mapping()
 		['q'] = 'close_window()',
 		['j'] = 'move_curser(1)',
 		['k'] = 'move_curser(-1)',
-		['<C-p>'] = [[function()
+		['<C-p>'] = function()
 			-- select the template based on the position
+			-- set the cursor in the default window
+			api.nvim_set_current_win(0)
 			local template = template_mapping[position]
 			-- call the template function
 			template()
 			-- close the window
+			api.nvim_set_current_win(win)
 			close_window()
-		end]]
+		end
 	}
 
 	-- fill buf with the template names from the keys of the template_mapping object
@@ -137,7 +140,7 @@ local function set_mapping()
 	api.nvim_buf_set_lines(buf, 1, -1, false, template_names)
 
 	for key, func in pairs(mappings) do
-		api.nvim_buf_set_keymap(buf, 'n', key, '<cmd>lua require"NeoReact".' .. func .. '()<CR>', {noremap = true, silent = true})
+		
 	end
 end
 
