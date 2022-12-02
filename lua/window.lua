@@ -8,7 +8,7 @@ local buf, win
 local position = 0
 
 -- Set the window size to be 8 lines and 32 columns
-local width = 27
+local width = 32
 local height = 10
 
 -- create an object to hold the name of the commands and the function to execute
