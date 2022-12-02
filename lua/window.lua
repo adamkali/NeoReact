@@ -172,5 +172,7 @@ return {
 	insert_edfc_template = code_templates.insert_edfc_template,
 	insert_function_then_catch_template = code_templates.insert_function_then_catch_template,
 	insert_state_var_template = code_templates.insert_state_var_template,
-	insert_use_effect_template = code_templates.insert_use_effect_template
+	insert_use_effect_template = code_templates.insert_use_effect_template,
+	template_names = template_names,
+	template_mapping = template_mapping
 }

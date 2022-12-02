@@ -12,5 +12,7 @@ M.insert_edfc_template = window.insert_edfc_template
 M.insert_function_then_catch_template = window.insert_function_then_catch_template
 M.insert_state_var_template = window.insert_state_var_template
 M.insert_use_effect_template = window.insert_use_effect_template
+M.template_mapping = window.template_mapping
+M.template_names = window.template_names
 
 return M
