@@ -22,6 +22,7 @@ local template_mapping = {
 local function open_window()
 	buf = api.nvim_create_buf(false, true) -- create new buffer
 	api.nvim_buf_set_option(buf, 'bufhidden', 'wipe') -- set buffer options
+	print('Buffer in open_window: ' .. buf)
 	local border_buf = api.nvim_create_buf(false, true) -- create new buffer for window
 
 
@@ -82,7 +83,6 @@ local function open_window()
 	-- add React Templates to the window top center 
 	api.nvim_buf_set_lines(buf, 1, 2, false, {string.rep(' ', center) .. 'React Templates'})
 
-	print('Buffer in open_window: ' .. buf)
 	
 end
 
