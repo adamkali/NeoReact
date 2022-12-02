@@ -114,11 +114,6 @@ end
 
 local function set_mapping()
 
-	-- the mappings should be able to cycle through the templates
-	-- j should go down
-	-- k should go up
-	-- q should quit
-	-- control+p should insert the highlighted template
 	local mappings = {
 		['q'] = close_window(),
 		['j'] = move_curser(1),
@@ -139,9 +134,7 @@ local function set_mapping()
 		table.insert(template_names, k)
 	end
 
-	print("Buffer in set_mapping: " .. buf)
-	-- add the template names to the buffer
-	api.nvim_buf_set_lines(buf, 2, -1, false, template_names)
+	api.nvim_buf_set_lines(buf, 1, -1, false, template_names)
 
 	for key, func in pairs(mappings) do
 		api.nvim_buf_set_keymap(buf, 'n', key, '<cmd>lua require"NeoReact".' .. func .. '()<CR>', {noremap = true, silent = true})
