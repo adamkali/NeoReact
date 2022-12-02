@@ -14,9 +14,9 @@ local height = 10
 -- create an object to hold the name of the commands and the function to execute
 local template_mapping = {
 	['React Functional Component'] = code_templates.insert_edfc_template,
-	['Function().then().catch() '] = code_templates.insert_function_then_catch_template,
 	['React useState Snippet    '] = code_templates.insert_state_var_template,
-	['React useEffect Snippet   '] = code_templates.insert_use_effect_template
+	['React useEffect Snippet   '] = code_templates.insert_use_effect_template,
+	['Function().then().catch() '] = code_templates.insert_function_then_catch_template
 }
 
 local function open_window()
@@ -88,7 +88,8 @@ end
 
 -- make a function to highlight the current line
 local function highlight_current_line()
-	api.nvim_buf_add_highlight(0, buf, 'Identifier', position, 0, -1)
+	-- highlight the line labeled by position
+	api.nvim_buf_add_highlight(buf, -1, 'Visual', position, 0, -1)
 end
 
 -- make a function to move the cursor up and down
@@ -112,23 +113,23 @@ local function close_window()
 	api.nvim_win_close(win, true)
 end
 
+local function call_template(position, win)
+	api.nvim_set_current_win(0)
+	-- get the template name from the template_mapping object
+	local template_name = template_mapping[position]
+	-- call the template function
+	template_name()
+	api.nvim_set_current_win(win)
+	close_window()
+end
+
 local function set_mapping()
 
 	local mappings = {
 		['q'] = 'close_window()',
 		['j'] = 'move_curser(1)',
 		['k'] = 'move_curser(-1)',
-		['<C-p>'] = function()
-			-- select the template based on the position
-			-- set the cursor in the default window
-			api.nvim_set_current_win(0)
-			local template = template_mapping[position]
-			-- call the template function
-			template()
-			-- close the window
-			api.nvim_set_current_win(win)
-			close_window()
-		end
+		['<CR>'] = 'call_template(position, win)'
 	}
 
 	-- fill buf with the template names from the keys of the template_mapping object
@@ -140,7 +141,7 @@ local function set_mapping()
 	api.nvim_buf_set_lines(buf, 1, -1, false, template_names)
 
 	for key, func in pairs(mappings) do
-		
+		api.nvim_buf_set_keymap(buf, 'n', key, ':lua require "NeoReact".' .. func .. '<CR>', {noremap = true, silent = true})
 	end
 end
 
